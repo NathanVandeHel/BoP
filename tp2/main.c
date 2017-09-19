@@ -11,7 +11,15 @@ int main()
     //loopsPrintingNumbers2();
     //lineOfAGivenLength();
     //squareOfAGivenLength();
-    squareProblem();
+    //squareProblem();
+    //squareProblem2();
+    //spheres();
+    //divisors();
+    //allNumbers();
+    //power();
+    //NthElement();
+    cubicRoot();
+
     return 0;
 }
 
@@ -104,6 +112,8 @@ int loopsPrintingNumbers()
         printf("%d \n", n++);
         //++n;
     }
+
+    return 0;
 }
 
 int loopsPrintingNumbers2()
@@ -145,6 +155,8 @@ int lineOfAGivenLength()
         printf("-");
     }
     printf("+");
+
+    return 0;
 }
 
 int squareOfAGivenLength()
@@ -177,6 +189,8 @@ int squareOfAGivenLength()
         printf("-");
     }
     printf("+");
+
+    return 0;
 }
 
 int squareProblem()
@@ -187,7 +201,126 @@ int squareProblem()
     scanf("%d", &n);
     for(i=1; i <= n; ++i)
     {
-        s = i^2;
+        s = i*i;
         printf("\n%d", s);
     }
+
+    return 0;
+}
+
+int squareProblem2 ()
+{
+    int n, i, s;
+    s = 0;
+
+    printf("Print all square numbers inferior to ?");
+    scanf("%d", &n);
+
+    for(i=1; s <= n; ++i)
+    {
+        printf("\n%d", s);
+        s=i*i;
+    }
+
+    return 0;
+}
+
+int spheres ()
+{
+    double r, v, r_cm, v_m3;
+    r = 100;
+    v = (4/3)*3.14*pow(r, 3);
+
+    while (v <= 1000000000)
+    {
+        r_cm = r/10;
+        v_m3 = v/1000000000;
+        printf("\nr = %g cm, v = %g m3", r_cm, v_m3);
+        v = (4/3)*3.14*pow(r, 3);
+        r+=100;
+    }
+
+    return 0;
+}
+
+int divisors ()
+{
+    int n, i;
+
+    printf("Enter an interger : ");
+    scanf("%d", &n);
+
+    for(i=1; i<=n; ++i)
+    {
+        if(!(n%i))
+           {
+               printf("\n%d", i);
+           }
+    }
+
+    return 0;
+}
+
+int allNumbers ()
+{
+    int i, j, k, l;
+
+    for(i=3; i<=5; ++i)for(j=3; j<=5; ++j)for(k=3; k<=5; ++k)for(l=3; l<=5; ++l)printf("\n%d%d%d%d", i, j, k, l);
+
+    return 0;
+}
+
+int power ()
+{
+    double a, r;
+    int n;
+
+    printf("a^n \nValue of a (real) ? ");
+    scanf("%lf", &a);
+    printf("\nValue of r (integer) ? ");
+    scanf("%d", &n);
+
+    r = pow(a, n);
+    printf("\n%g^%d = %lf", a, n, r);
+
+    return 0;
+}
+
+int NthElement ()
+{
+    int n, c, i, x;
+    x = 2;
+
+    printf("Series : x0=2, xi=2*x(i-1)+5 \n");
+    printf("Nth element ? ");
+    scanf("%d", &n);
+    printf("Do you want : \n    1. print the Nth element only \n    2. print the first Nth elements \n");
+    scanf("%d", &c);
+
+
+    for (i=0; i<=n; ++i)
+    {
+        if(c == 2) printf("\nx%d = %d", i, x);
+        if (i < n) x=2*x+5;
+    }
+    if(c == 1) printf("\nx%d = %d", n, x);
+
+    return 0;
+}
+
+int cubicRoot ()
+{
+    double n, r;
+    int i, c;
+
+    printf("Calculate the cubic root of : ");
+    scanf("%lf", &n);
+    printf("\nGive an approximation of this cubic root : ");
+    scanf("%lf", &r);
+    printf("\nNumber of calcul iterations : ");
+    scanf("%d", &c);
+
+    for(i=1; i<=c; ++i) r = ((n/pow(r, 2))+2*r)/3;
+
+    printf("\nAn approximation of the cubic root of %lf is : %lf (with %d iterations of the Newton's method)", n, r, c);
 }
