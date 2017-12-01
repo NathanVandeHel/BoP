@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 int main()
 {
@@ -18,8 +19,9 @@ int main()
     //lessOrGreater();
     //product();
     //highwayI();
-    highwayII();
+    //highwayII();
     //statisticsOnLetters();
+    statisticsOnMidSemesterTest();
 }
 
 int productOfNumbers ()
@@ -316,7 +318,8 @@ int product ()
 
 int highwayI ()
 {
-    int j, MAX_DATA = 300;
+    const int MAX_DATA = 300;
+    int j;
     int data[MAX_DATA];
     for(j=0; j<MAX_DATA; j+=3)
     {
@@ -328,7 +331,8 @@ int highwayI ()
     //for(j=0; j<MAX_DATA; j+=1) printf("%d ", data[j]);
     //printf("\n");
 
-    int SPEED_LIMIT = 130, speed = 1, i;
+    const int SPEED_LIMIT = 130;
+    int speed = 1, i;
     int speedSave[24];
     for(i=0; i<24; ++i) speedSave[i] = 0;
 
@@ -350,7 +354,8 @@ int highwayI ()
 
 int highwayII ()
 {
-    int j, MAX_DATA = 300;
+    const int MAX_DATA = 300;
+    int j;
     int data[MAX_DATA];
     for(j=0; j<MAX_DATA; j+=3)
     {
@@ -362,7 +367,9 @@ int highwayII ()
     //for(j=0; j<MAX_DATA; j+=1) printf("%d ", data[j]);
     //printf("\n");
 
-    int FIRST_SPEED_LIMIT = 140, SECOND_SPEED_LIMIT = 180, speed = 1, i;
+    const int FIRST_SPEED_LIMIT = 140;
+    const int SECOND_SPEED_LIMIT = 180;
+    int speed = 1, i;
     int fineSave[24];
     for(i=0; i<24; ++i) fineSave[i] = 0;
 
@@ -382,7 +389,44 @@ int highwayII ()
 
 int statisticsOnLetters ()
 {
+    const int MAX_BUFFER = 512;
+    int i;
+    int countLetter[26];
+    memset(countLetter, 0, 26*sizeof(int));
 
+    char buffer[MAX_BUFFER];
+
+    scanf("%s", buffer);
+
+    for(i=0; buffer[i] != 0; ++i)
+    {
+       countLetter[buffer[i]-65]+=1;
+    }
+
+    for(i=0; i<26; ++i) if(countLetter[i] != 0) printf("%c : %d \n",i+65, countLetter[i]);
+
+    return 0;
+}
+
+int statisticsOnMidSemesterTest ()
+{
+    int testPassCounter[4];
+    memset(testPassCounter, 0, 4*sizeof(int));
+
+    char testSheet = 'A';
+    int firstProblemScore, secondProblemScore, thirdProblemScore;
+    int i;
+
+    while (testSheet != 'x')
+    {
+        scanf("%c %d %d %d", &testSheet, &firstProblemScore, &secondProblemScore, &thirdProblemScore);
+        if(firstProblemScore >= 2 && secondProblemScore >= 2 && thirdProblemScore >= 2 && firstProblemScore+secondProblemScore+thirdProblemScore >= 12)
+        {
+            testPassCounter[testSheet-65] += 1;
+        }
+    }
+
+    for(i=0; i<4; ++i) printf("%c %d \n", i+65, testPassCounter[i]);
 
     return 0;
 }
